@@ -34,8 +34,8 @@ requirements:
     - tornado >=6.1,<7
     - typing-extensions >=4.4.0  # [py<310]
     - black
-    - uvicorn
-    - starlette
+    - uvicorn >=0.22.0
+    - starlette >=0.26.1,!=0.36.0
     - websockets >=10,<13
 
 test:
