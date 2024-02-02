@@ -1,5 +1,5 @@
 {% set name = "marimo" %}
-{% set version = "0.1.81" %}
+{% set version = "0.2.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/marimo-{{ version }}.tar.gz
-  sha256: f09831f17330e8bd784a4ea35a764bca63ea231fe24365d34134ab2e02b91141
+  sha256: 19e4533b07a477d98407403edd7f7e73d1a80d55b4fb2496fcb3450bc2473cac
 
 build:
   entry_points:
@@ -34,6 +34,9 @@ requirements:
     - tornado >=6.1,<7
     - typing-extensions >=4.4.0  # [py<310]
     - black
+    - uvicorn
+    - starlette
+    - websockets
 
 test:
   imports:
