@@ -36,7 +36,7 @@ requirements:
     - black
     - uvicorn
     - starlette
-    - websockets
+    - websockets >=10,<13
 
 test:
   imports:
