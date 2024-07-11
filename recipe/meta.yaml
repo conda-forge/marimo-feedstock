@@ -1,5 +1,5 @@
 {% set name = "marimo" %}
-{% set version = "0.7.1" %}
+{% set version = "0.7.2" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/marimo-{{ version }}.tar.gz
-  sha256: 73ed6188e3966e5374a64f9d9089589bc1ea41f1c8a61d051395c042e7c7f3a8
+  sha256: b813ab7dcaca7bc307b6984271f6f0cfad0dd1baf0946c7a085e01cb18236e8c
 
 build:
   entry_points:
@@ -41,6 +41,7 @@ requirements:
     - docutils >=0.17.0
     - psutil >=5.0
     - itsdangerous >=2
+    - ruff
 
 test:
   imports:
