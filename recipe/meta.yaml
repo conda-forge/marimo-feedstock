@@ -1,5 +1,5 @@
 {% set name = "marimo" %}
-{% set version = "0.7.14" %}
+{% set version = "0.7.16" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/marimo-{{ version }}.tar.gz
-  sha256: 316b4e5573d841557760f44338b516227e4e2e8833a0a21fd6fa6275426d13a5
+  sha256: cc46ee0b0f60422a8dbf3320ffc918296d36fd876c743c97ce30ec9067ab80ad
 
 build:
   entry_points:
