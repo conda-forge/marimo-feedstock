@@ -1,5 +1,5 @@
 {% set name = "marimo" %}
-{% set version = "0.9.1" %}
+{% set version = "0.9.11" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/marimo-{{ version }}.tar.gz
-  sha256: eec1ba8b55aeb0db82a6e6a88c55e149f3d6080dbf9f31d7bcc176f40a464c38
+  sha256: b40ee75da4881f07d18a05fee680eb2d0d9d8254966f42088613e5d285ef54ee
 
 build:
   entry_points:
@@ -21,7 +21,7 @@ requirements:
     - cross-python_{{ target_platform }}     # [build_platform != target_platform]
   host:
     - python
-    - setuptools
+    - hatchling
     - pip
   run:
     - python
