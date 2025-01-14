@@ -14,7 +14,7 @@ source:
 
 build:
   number: 0
-  skip: match(python_impl, 'pypy')
+  skip: "python_impl == 'pypy'" 
   python:
     entry_points:
       - marimo = marimo._cli.cli:main
@@ -78,4 +78,3 @@ extra:
     - akshayka
     - mfansler
     - twrightsman
-
