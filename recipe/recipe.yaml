@@ -14,7 +14,7 @@ source:
 
 build:
   number: 0
-  skip: "python_impl == 'pypy'" 
+  skip: "python_impl == 'pypy'"
   python:
     entry_points:
       - marimo = marimo._cli.cli:main
@@ -22,7 +22,7 @@ build:
 requirements:
   build:
     - if: build_platform != target_platform
-      then: 
+      then:
         - python
         - cross-python_${{ target_platform }}
   host:
