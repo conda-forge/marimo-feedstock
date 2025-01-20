@@ -2,7 +2,7 @@ schema_version: 1
 
 context:
   name: marimo
-  version: "0.10.14"
+  version: "0.10.15"
 
 package:
   name: ${{ name|lower }}
@@ -10,7 +10,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/marimo-${{ version }}.tar.gz
-  sha256: 01ff0a3602818609b60300ab0ab491616bad6ab9b867e7ed76dd2616002972c9
+  sha256: 603487d0b020c3b104868fbb65ddad6411c97de7b1f7646be476077ecd4c4564
 
 build:
   number: 0
