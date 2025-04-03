@@ -14,7 +14,6 @@ source:
 
 build:
   number: 0
-  skip: "python_impl == 'pypy'"
   python:
     entry_points:
       - marimo = marimo._cli.cli:main
