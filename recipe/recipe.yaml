@@ -2,7 +2,7 @@ schema_version: 1
 
 context:
   name: marimo
-  version: "0.13.6"
+  version: "0.13.10"
 
 package:
   name: ${{ name|lower }}
