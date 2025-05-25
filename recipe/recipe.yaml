@@ -2,7 +2,7 @@ schema_version: 1
 
 context:
   name: marimo
-  version: "0.13.6"
+  version: "0.13.10"
 
 package:
   name: ${{ name|lower }}
@@ -10,9 +10,12 @@ package:
 
 source:
   url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/marimo-${{ version }}.tar.gz
-  sha256: 42ccf4489bd6389fcc1fd78833204e0c2042182eefa769733ecabedf6b51294f
+  sha256: b809d51773740885cf93b3cc65860b197b052fc7696b08fda1201231f30c904a
 
 build:
+  skip: 
+    - ppc64le
+    - aarch64 
   number: 0
   python:
     entry_points:
@@ -30,7 +33,7 @@ requirements:
     - pip
   run:
     - python
-    - click >=8.0,<9
+    - click >=8.0,!=8.2.0,<9
     - jedi >=0.18.0
     - markdown >=3.4,<4
     - pymdown-extensions >=10,<11
@@ -40,8 +43,9 @@ requirements:
     - uvicorn >=0.22.0
     - starlette >=0.26.1,!=0.36.0
     - websockets >=10
-    - pycrdt >=0.11.0,<0.12.0
-    - if: match(python, "<3.10")
+    - if: match(python, ">=3.11")
+      then: loro >=1.5.0
+    - if: match(python, "<3.11")
       then: typing-extensions >=4.4.0
     - docutils >=0.16.0
     - psutil >=5.0
