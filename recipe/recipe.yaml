@@ -13,6 +13,9 @@ source:
   sha256: b809d51773740885cf93b3cc65860b197b052fc7696b08fda1201231f30c904a
 
 build:
+  skip: 
+    - ppc64le
+    - aarch64 
   number: 0
   python:
     entry_points:
