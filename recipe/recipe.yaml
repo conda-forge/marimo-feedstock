@@ -2,7 +2,7 @@ schema_version: 1
 
 context:
   name: marimo
-  version: "0.13.11"
+  version: "0.13.14"
 
 package:
   name: ${{ name|lower }}
@@ -10,7 +10,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/marimo-${{ version }}.tar.gz
-  sha256: e83090aa51d1e95be0069e482dbb53e208f5232da9c8604c06582a42ce6e1aee
+  sha256: af03fd03837793963c5ca296f287190d4feecd5f34bc5d9449e015ffb17cdcbf
 
 build:
   skip:
@@ -33,7 +33,7 @@ requirements:
     - pip
   run:
     - python
-    - click >=8.0,!=8.2.0,<9
+    - click >=8.0,<9
     - jedi >=0.18.0
     - markdown >=3.4,<4
     - pymdown-extensions >=10,<11
