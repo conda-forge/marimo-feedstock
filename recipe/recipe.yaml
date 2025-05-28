@@ -33,7 +33,7 @@ requirements:
     - pip
   run:
     - python
-    - click >=8.0,!=8.2.0,<9
+    - click >=8.0,<9
     - jedi >=0.18.0
     - markdown >=3.4,<4
     - pymdown-extensions >=10,<11
