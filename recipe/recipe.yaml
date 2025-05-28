@@ -16,7 +16,7 @@ build:
   skip:
     - ppc64le
     - aarch64
-  number: 0
+  number: 1
   python:
     entry_points:
       - marimo = marimo._cli.cli:main
