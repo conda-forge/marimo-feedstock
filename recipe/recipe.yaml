@@ -29,7 +29,7 @@ requirements:
         - cross-python_${{ target_platform }}
   host:
     - python
-    - uv
+    - uv-build
     - pip
   run:
     - python
