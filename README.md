@@ -300,5 +300,4 @@ Feedstock Maintainers
 * [@akshayka](https://github.com/akshayka/)
 * [@mfansler](https://github.com/mfansler/)
 * [@mscolnick](https://github.com/mscolnick/)
-* [@twrightsman](https://github.com/twrightsman/)
 
