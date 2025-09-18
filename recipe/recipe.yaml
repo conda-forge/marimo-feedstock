@@ -16,7 +16,7 @@ build:
   skip:
     - ppc64le
     - aarch64
-  number: 0
+  number: 1
   python:
     entry_points:
       - marimo = marimo._cli.cli:main
@@ -43,7 +43,7 @@ requirements:
     - pyyaml >=6.0
     - uvicorn >=0.22.0
     - starlette >=0.26.1,!=0.36.0
-    - websockets >=10
+    - websockets >=14.2.0
     - if: match(python, ">=3.11")
       then: loro >=1.5.0
     - if: match(python, "<3.11")
