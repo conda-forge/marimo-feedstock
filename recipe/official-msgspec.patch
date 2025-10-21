@@ -5,7 +5,7 @@
      # for packaging.version; not sure what the lower bound is.
      "packaging",
 -    "msgspec_m>=0.19.2",
-+    "msgspec>=0.19.2",
++    "msgspec>=0.19.0",
  ]
  readme = "README.md"
  license = { file = "LICENSE" }
