@@ -10,7 +10,9 @@ package:
 
 source:
   url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/marimo-${{ version }}.tar.gz
-  sha256: f634e1aedc1f4d784a1cc92e916a474b73cad02fd4b72aab502237bcf104434at
+  sha256: f634e1aedc1f4d784a1cc92e916a474b73cad02fd4b72aab502237bcf104434a
+  patches:
+    - official-msgspec.patch
 
 build:
   skip:
