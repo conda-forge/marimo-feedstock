@@ -55,7 +55,7 @@ requirements:
     - itsdangerous >=2
     - narwhals >=2.0.0
     - packaging
-    - msgspec >=0.19.2
+    - msgspec >=0.19.0
 
 tests:
   - python:
