@@ -19,7 +19,7 @@ build:
   number: 0
   prefix_detection:
     ignore:
-      - marimo/_lsp/copilot/compiled/darwin/x64/vscode-policy-watcher.node
+      - "**/vscode-policy-watcher*"
   python:
     entry_points:
       - marimo = marimo._cli.cli:main
