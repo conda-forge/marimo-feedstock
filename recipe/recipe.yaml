@@ -17,6 +17,9 @@ build:
     - ppc64le
     - aarch64
   number: 0
+  prefix_detection:
+    ignore:
+      - "**/vscode-policy-watcher.node"
   python:
     entry_points:
       - marimo = marimo._cli.cli:main
