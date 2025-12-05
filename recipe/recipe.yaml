@@ -17,8 +17,8 @@ build:
     - ppc64le
     - aarch64
   number: 0
-  prefix_detection:
-    ignore: true
+  dynamic_linking:
+    binary_relocation: false
   python:
     entry_points:
       - marimo = marimo._cli.cli:main
