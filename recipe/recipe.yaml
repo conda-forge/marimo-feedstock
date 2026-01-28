@@ -16,7 +16,7 @@ build:
   skip:
     - ppc64le
     - aarch64
-  number: 0
+  number: 1
   dynamic_linking:
     binary_relocation: false
   python:
@@ -36,6 +36,7 @@ requirements:
     - uv-build
   run:
     - python
+    - menuinst >=2
     - click >=8.0,<9
     - jedi >=0.18.0
     - markdown >=3.6,<4
