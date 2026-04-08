@@ -23,6 +23,7 @@ build:
     entry_points:
       - marimo = marimo._cli.cli:main
 
+
 requirements:
   build:
     - if: build_platform != target_platform
