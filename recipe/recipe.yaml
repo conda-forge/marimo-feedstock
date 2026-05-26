@@ -34,18 +34,19 @@ requirements:
   host:
     - python
     - pip
-    - uv-build >=0.8.3,<0.10.0
+    - uv-build >=0.8.3,<0.12.0
   run:
     - python
     - click >=8.0,<9
-    - jedi >=0.18.0
+    - jedi >=0.18.0,<0.20.0
     - markdown >=3.6,<4
-    - pymdown-extensions >=10.15,<11
+    - pymdown-extensions >=10.21.2,<11
     - pygments >=2.19,<3
     - tomlkit >=0.12.0
     - pyyaml >=6.0.1
     - uvicorn >=0.22.0
     - starlette >=0.37.2
+    - python-multipart >=0.0.18
     - websockets >=14.2.0
     - loro >=1.10.0
     - if: match(python, "<3.11")
