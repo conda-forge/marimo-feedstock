@@ -1,0 +1,25 @@
+{
+    "$schema": "https://schemas.conda.org/menuinst/menuinst-1-1-0.schema.json",
+    "menu_name": "marimo (__PKG_VERSION__)",
+    "menu_items": [
+        {
+            "name": "marimo",
+            "description": "A reactive Python notebook that's reproducible and git-friendly",
+            "icon": "{{ MENU_ITEM_LOCATION }}/marimo.{{ ICON_EXT }}",
+            "command": ["{{ PYTHON }}", "-m", "marimo", "edit"],
+            "platforms": {
+                "linux": {
+                    "Categories": ["Development", "Science", "IDE"],
+                    "StartupWMClass": "marimo"
+                },
+                "osx": {
+                    "CFBundleIdentifier": "io.marimo.marimo",
+                    "CFBundleDisplayName": "marimo"
+                },
+                "win": {
+                    "desktop": true
+                }
+            }
+        }
+    ]
+}
