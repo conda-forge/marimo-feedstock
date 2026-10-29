@@ -1,0 +1,18 @@
+--- a/marimo/_server/lsp.py
++++ b/marimo/_server/lsp.py
+@@ -555,6 +555,15 @@
+             return []
+ 
+         copilot_bin = self._lsp_dir() / "copilot" / "language-server.cjs"
++        if not copilot_bin.exists():
++            # conda-forge does not ship the GitHub Copilot language server
++            # (it is not under an open-source license)
++            LOGGER.warning(
++                "GitHub Copilot language server not found at %s; "
++                "it is not included in conda-forge builds of marimo",
++                copilot_bin,
++            )
++            return []
+ 
+         # Use typed format to avoid quoting issues: copilot:<binary_path>
+         copilot_command = f"copilot:{copilot_bin}"
