@@ -46,7 +46,7 @@ requirements:
     - python-multipart >=0.0.18
     - websockets >=14.2.0
     # upstream only requires loro on python <3.15, which noarch can't express;
-    # loro has no linux-aarch64/ppc64le builds yet (conda-forge/loro-feedstock#20)
+    # loro has no linux-aarch64/ppc64le builds yet (conda-forge/loro-feedstock#27)
     - loro >=1.10.0
     # upstream only requires typing-extensions on python <3.12
     - typing-extensions >=4.4.0
