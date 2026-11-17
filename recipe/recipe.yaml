@@ -11,18 +11,15 @@ package:
 source:
   url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/marimo-${{ version }}.tar.gz
   sha256: 3cfa38ac84c66625e1f7cb7dc81a41ebd592244000ffe37effb28a91765056b0
-  patches:
-    # don't try to start the Copilot language server when it isn't bundled
-    - 0001-skip-copilot-when-not-bundled.patch
 
 build:
   number: 0
   noarch: python
-  script:
-    # drop the vendored GitHub Copilot language server: it is not under an
-    # open-source license and ships prebuilt native binaries for every platform
-    - rm -rf marimo/_lsp/copilot
-    - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  # the sdist vendors the GitHub Copilot language server (marimo/_lsp/copilot)
+  # with prebuilt Node addons for all platforms; they must not be relocated
+  dynamic_linking:
+    binary_relocation: false
   python:
     entry_points:
       - marimo = marimo._cli.cli:main
@@ -45,7 +42,7 @@ requirements:
     - starlette >=0.37.2
     - python-multipart >=0.0.18
     - websockets >=14.2.0
-    # upstream only requires loro on python <3.15, which noarch can't express;
+    # upstream only requires loro on python <3.15, which noarch can't express
     - loro >=1.10.0
     # upstream only requires typing-extensions on python <3.12
     - typing-extensions >=4.4.0
@@ -70,8 +67,8 @@ tests:
         - python ${{ python_min }}.*
     script:
       - marimo --help
-      # the Copilot server must be gone, the LSP bridge used by other servers kept
-      - python -c "import marimo, pathlib; p = pathlib.Path(marimo.__file__).parent / '_lsp'; assert (p / 'index.cjs').is_file(); assert not (p / 'copilot').exists()"
+      # the LSP bridge and the bundled Copilot language server must be shipped
+      - python -c "import marimo, pathlib; p = pathlib.Path(marimo.__file__).parent / '_lsp'; assert (p / 'index.cjs').is_file(); assert (p / 'copilot' / 'language-server.cjs').is_file()"
 
 about:
   summary: A library for making reactive notebooks and apps
@@ -80,6 +77,9 @@ about:
     - LICENSE
     - marimo/third_party.txt
     - marimo/third_party_licenses.txt
+    # MIT license of the bundled @github/copilot-language-server 1.548.0, which
+    # upstream's third_party_licenses.txt does not include
+    - LICENSE-copilot-language-server
   homepage: https://marimo.io
   repository: https://github.com/marimo-team/marimo
 
