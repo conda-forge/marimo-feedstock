@@ -2,7 +2,7 @@ schema_version: 1
 
 context:
   name: marimo
-  version: "0.25.1"
+  version: "0.25.2"
 
 package:
   name: ${{ name|lower }}
@@ -10,37 +10,31 @@ package:
 
 source:
   url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/marimo-${{ version }}.tar.gz
-  sha256: 934db2ceb6c2b8c9ae3514a7a22e6b22ecf54fabea0b6138aed1980f8f1536ff
+  sha256: 3cfa38ac84c66625e1f7cb7dc81a41ebd592244000ffe37effb28a91765056b0
 
 build:
-  skip:
-    - ppc64le
-    - aarch64
   number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  # the sdist vendors the GitHub Copilot language server (marimo/_lsp/copilot)
+  # with prebuilt Node addons for all platforms; they must not be relocated
   dynamic_linking:
     binary_relocation: false
   python:
     entry_points:
       - marimo = marimo._cli.cli:main
 
-
 requirements:
-  build:
-    - if: build_platform != target_platform
-      then:
-        - python
-        - cross-python_${{ target_platform }}
-    - uv-build
   host:
-    - python
+    - python ${{ python_min }}.*
     - pip
-    - uv-build >=0.8.3,<0.12.0
+    - uv-build >=0.8.3,<0.13.0
   run:
-    - python
+    - python >=${{ python_min }}
     - click >=8.0,<9
-    - jedi >=0.18.0,<0.20.0
+    - jedi >=0.18.0,<0.21.0
     - markdown >=3.6,<4
-    - pymdown-extensions >=10.21.2,<11
+    - pymdown-extensions >=10.21.2,<12
     - pygments >=2.19,<3
     - tomlkit >=0.12.0
     - pyyaml >=6.0.1
@@ -48,28 +42,33 @@ requirements:
     - starlette >=0.37.2
     - python-multipart >=0.0.18
     - websockets >=14.2.0
+    # upstream only requires loro on python <3.15, which noarch can't express
     - loro >=1.10.0
-    - if: match(python, "<3.11")
-      then: typing-extensions >=4.4.0
+    # upstream only requires typing-extensions on python <3.12
+    - typing-extensions >=4.4.0
     - docutils >=0.16.0
     - psutil >=5.0
     - itsdangerous >=2.0.0
     - narwhals >=2.0.0
     - packaging
-    - msgspec >=0.20.0
-    - if: match(python, "<3.15")
-      then: pyzmq >=27.1.0
+    - msgspec >=0.22.0
+    - pyzmq >=27.1.0
 
 tests:
   - python:
       imports:
         - marimo
       pip_check: true
+      python_version:
+        - ${{ python_min }}.*
+        - "*"
   - requirements:
       run:
-        - pip
+        - python ${{ python_min }}.*
     script:
       - marimo --help
+      # the LSP bridge and the bundled Copilot language server must be shipped
+      - python -c "import marimo, pathlib; p = pathlib.Path(marimo.__file__).parent / '_lsp'; assert (p / 'index.cjs').is_file(); assert (p / 'copilot' / 'language-server.cjs').is_file()"
 
 about:
   summary: A library for making reactive notebooks and apps
@@ -78,6 +77,9 @@ about:
     - LICENSE
     - marimo/third_party.txt
     - marimo/third_party_licenses.txt
+    # MIT license of the bundled @github/copilot-language-server 1.548.0, which
+    # upstream's third_party_licenses.txt does not include
+    - LICENSE-copilot-language-server
   homepage: https://marimo.io
   repository: https://github.com/marimo-team/marimo
 
@@ -86,3 +88,4 @@ extra:
     - mscolnick
     - akshayka
     - mfansler
+    - carlodri
